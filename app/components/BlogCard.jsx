@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { db } from "../firebase";
 import {
   collection,
@@ -56,9 +57,11 @@ const BlogCard = () => {
           <p className="text-sm text-gray-200">{blog.date}</p>
           <p className="text-sm text-gray-200">{blog.author}</p>
           <div className="flex justify-between">
-            <button className="bg-orange-800 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded">
-              See More
-            </button>
+            <Link href={`/blog/${blog.id}`}>
+              <button className="bg-orange-800 hover:bg-orange-900 text-white font-bold py-2 px-4 rounded">
+                See More
+              </button>
+            </Link>
             <button
               onClick={() => deleteBlog(blog.id)}
               className=" hover:bg-slate-700 text-red-500 text-xl font-bold py-2 px-4 rounded"

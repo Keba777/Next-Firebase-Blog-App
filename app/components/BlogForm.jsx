@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
-const BlogForm = ({ navigateToHomePage }) => {
+const BlogForm = () => {
+  const router = useRouter();
   const [newBlog, setNewBlog] = useState({
     title: "",
     date: "",
@@ -27,7 +29,7 @@ const BlogForm = ({ navigateToHomePage }) => {
         description: newBlog.description,
       });
       setNewBlog({ title: "", date: "", author: "", description: "" });
-      navigateToHomePage();
+      router.push("/");
     }
   };
 
